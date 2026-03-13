@@ -2,14 +2,16 @@
   "name": "fmi-codes-docs-fe",
   "version": "1.0.0",
   "description": "Pure React Documentation Template",
-  "main": "src/index.js",
+  "main": "src/index.jsx",
   "scripts": {
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "lucide-react": "^0.577.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.3.11"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
