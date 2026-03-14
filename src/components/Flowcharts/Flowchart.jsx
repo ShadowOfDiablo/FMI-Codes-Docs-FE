@@ -60,18 +60,21 @@ const Flowchart = ({ nodes, edges, caption, viewBox = "0 0 800 400" }) => {
 
         {/* Nodes */}
         {nodes.map((node, index) => (
-          <g key={`node-${index}`} className={`flow-node ${node.glow || ''}`}>
+          <g 
+            key={`node-${index}`} 
+            className={`flow-node ${node.glow || ''}`}
+            style={{ '--node-color': node.color || 'var(--flow-primary)' }}
+          >
             <rect 
               x={node.x} 
               y={node.y} 
               width={node.width || 120} 
               height={node.height || 80} 
-              style={node.color ? { stroke: node.color } : {}}
             />
             
             {/* Icon */}
             {node.icon && (
-              <g transform={`translate(${node.x + (node.width || 120)/2 - 12}, ${node.y + 15})`} className="icon-container" style={node.color ? { fill: node.color } : {}}>
+              <g transform={`translate(${node.x + (node.width || 120)/2 - 12}, ${node.y + 15})`} className="icon-container">
                 {node.icon}
               </g>
             )}
@@ -158,7 +161,7 @@ export const UserLoginFlow = () => {
 
 export const UXFlowchart = () => {
   const nodes = [
-    { x: 40, y: 60, label: 'User', icon: <User size={20} />, color: '#38bdf8', width: 100, height: 70 },
+    { x: 40, y: 60, label: 'User', icon: <User size={20} />, color: '#f472b6', width: 100, height: 70 },
     { x: 250, y: 60, label: 'Website', icon: <Globe size={20} />, color: '#34d399', width: 100, height: 70 },
     { x: 250, y: 260, label: 'Backend', icon: <Server size={20} />, color: '#38bdf8', width: 100, height: 70 },
     { x: 460, y: 260, label: 'Mobile App', icon: <Smartphone size={20} />, color: '#38bdf8', width: 100, height: 70 },
