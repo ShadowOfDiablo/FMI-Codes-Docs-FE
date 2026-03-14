@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { 
   User, 
   Smartphone, 
@@ -9,88 +9,223 @@ import {
   Lock, 
   ShieldCheck,
   Send,
-  Zap
+  Zap,
+  Maximize2,
+  X,
+  ZoomIn,
+  ZoomOut,
+  RefreshCw
 } from 'lucide-react';
 import './Flowchart.css';
 
 const Flowchart = ({ nodes, edges, caption, viewBox = "0 0 800 400" }) => {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+
+  const handleClose = () => {
+    setIsZoomed(false);
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const handleZoomIn = (e) => {
+    if (e) e.stopPropagation();
+    setScale(prev => Math.min(prev + 0.3, 5));
+  };
+
+  const handleZoomOut = (e) => {
+    if (e) e.stopPropagation();
+    setScale(prev => Math.max(prev - 0.3, 0.5));
+  };
+
+  const handleReset = (e) => {
+    if (e) e.stopPropagation();
+    setScale(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const handleWheel = (e) => {
+    if (!isZoomed) return;
+    e.stopPropagation();
+    if (e.deltaY < 0) handleZoomIn();
+    else handleZoomOut();
+  };
+
+  const handleMouseDown = (e) => {
+    if (isZoomed && scale > 1) {
+      setIsDragging(true);
+      setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging && isZoomed && scale > 1) {
+      setPosition({
+        x: e.clientX - dragStart.x,
+        y: e.clientY - dragStart.y
+      });
+    }
+  };
+
+  // Touch Support
+  const [touchStartDist, setTouchStartDist] = useState(0);
+
+  const handleTouchStart = (e) => {
+    if (!isZoomed) return;
+    if (e.touches.length === 1 && scale > 1) {
+      setIsDragging(true);
+      setDragStart({ 
+        x: e.touches[0].clientX - position.x, 
+        y: e.touches[0].clientY - position.y 
+      });
+    } else if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      setTouchStartDist(dist);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isZoomed) return;
+    if (e.touches.length === 1 && isDragging && scale > 1) {
+      setPosition({
+        x: e.touches[0].clientX - dragStart.x,
+        y: e.touches[0].clientY - dragStart.y
+      });
+    } else if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const delta = dist / touchStartDist;
+      setScale(prev => Math.min(Math.max(prev * delta, 0.5), 5));
+      setTouchStartDist(dist);
+    }
+  };
+
+  const renderContent = (isModal = false) => (
+    <svg 
+      viewBox={viewBox} 
+      className={`flowchart-svg ${isModal ? 'is-modal' : ''}`}
+      style={isModal ? {
+        transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+        cursor: scale > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+      } : {}}
+      onMouseDown={isModal ? handleMouseDown : undefined}
+      onMouseMove={isModal ? handleMouseMove : undefined}
+      onMouseUp={() => setIsDragging(false)}
+      onMouseLeave={() => setIsDragging(false)}
+      onTouchStart={isModal ? handleTouchStart : undefined}
+      onTouchMove={isModal ? handleTouchMove : undefined}
+      onTouchEnd={() => setIsDragging(false)}
+    >
+      <defs>
+        <marker
+          id="arrowhead"
+          markerWidth="10"
+          markerHeight="7"
+          refX="10"
+          refY="3.5"
+          orient="auto"
+        >
+          <polygon points="0 0, 10 3.5, 0 7" />
+        </marker>
+      </defs>
+
+      {/* Edges */}
+      {edges.map((edge, index) => (
+        <g key={`edge-${index}`}>
+          <path
+            d={edge.d}
+            className={`flow-edge ${edge.active ? 'flow-edge-active' : ''}`}
+            id={`edge-path-${index}`}
+          />
+          {edge.label && (
+            <g transform={edge.labelPos ? `translate(${edge.labelPos.x}, ${edge.labelPos.y})` : ''}>
+              {!edge.labelPos && (
+                <text className="flow-edge-label-text">
+                  <textPath href={`#edge-path-${index}`} startOffset="50%">
+                    {edge.label}
+                  </textPath>
+                </text>
+              )}
+              {edge.labelPos && (
+                 <>
+                  <rect x="-40" y="-10" width="80" height="20" className="flow-edge-label-bg" />
+                  <text className="flow-edge-label-text">{edge.label}</text>
+                 </>
+              )}
+            </g>
+          )}
+        </g>
+      ))}
+
+      {/* Nodes */}
+      {nodes.map((node, index) => (
+        <g 
+          key={`node-${index}`} 
+          className={`flow-node ${node.glow || ''}`}
+          style={{ '--node-color': node.color || 'var(--flow-primary)' }}
+        >
+          <rect 
+            x={node.x} 
+            y={node.y} 
+            width={node.width || 120} 
+            height={node.height || 80} 
+          />
+          
+          {/* Icon */}
+          {node.icon && (
+            <g transform={`translate(${node.x + (node.width || 120)/2 - 12}, ${node.y + 15})`} className="icon-container">
+              {node.icon}
+            </g>
+          )}
+
+          <text 
+            x={node.x + (node.width || 120)/2} 
+            y={node.y + (node.icon ? 55 : 40)} 
+            className="label"
+          >
+            {node.label}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+
   return (
-    <div className="flowchart-container">
-      <svg viewBox={viewBox} className="flowchart-svg">
-        <defs>
-          <marker
-            id="arrowhead"
-            markerWidth="10"
-            markerHeight="7"
-            refX="10"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" />
-          </marker>
-        </defs>
+    <>
+      <div className="flowchart-container">
+        <button className="flow-expand-btn" onClick={() => setIsZoomed(true)} title="Expand Diagram">
+          <Maximize2 size={18} />
+        </button>
+        {renderContent()}
+        {caption && <div className="flow-caption">{caption}</div>}
+      </div>
 
-        {/* Edges */}
-        {edges.map((edge, index) => (
-          <g key={`edge-${index}`}>
-            <path
-              d={edge.d}
-              className={`flow-edge ${edge.active ? 'flow-edge-active' : ''}`}
-              id={`edge-path-${index}`}
-            />
-            {edge.label && (
-              <g transform={edge.labelPos ? `translate(${edge.labelPos.x}, ${edge.labelPos.y})` : ''}>
-                {!edge.labelPos && (
-                  <text className="flow-edge-label-text">
-                    <textPath href={`#edge-path-${index}`} startOffset="50%">
-                      {edge.label}
-                    </textPath>
-                  </text>
-                )}
-                {edge.labelPos && (
-                   <>
-                    <rect x="-40" y="-10" width="80" height="20" className="flow-edge-label-bg" />
-                    <text className="flow-edge-label-text">{edge.label}</text>
-                   </>
-                )}
-              </g>
-            )}
-          </g>
-        ))}
-
-        {/* Nodes */}
-        {nodes.map((node, index) => (
-          <g 
-            key={`node-${index}`} 
-            className={`flow-node ${node.glow || ''}`}
-            style={{ '--node-color': node.color || 'var(--flow-primary)' }}
-          >
-            <rect 
-              x={node.x} 
-              y={node.y} 
-              width={node.width || 120} 
-              height={node.height || 80} 
-            />
-            
-            {/* Icon */}
-            {node.icon && (
-              <g transform={`translate(${node.x + (node.width || 120)/2 - 12}, ${node.y + 15})`} className="icon-container">
-                {node.icon}
-              </g>
-            )}
-
-            <text 
-              x={node.x + (node.width || 120)/2} 
-              y={node.y + (node.icon ? 55 : 40)} 
-              className="label"
-            >
-              {node.label}
-            </text>
-          </g>
-        ))}
-      </svg>
-      {caption && <div className="flow-caption">{caption}</div>}
-    </div>
+      {isZoomed && (
+        <div className="image-zoom-overlay" onClick={handleClose} onWheel={handleWheel}>
+          <div className="zoom-controls-bottom-right">
+            <button className="zoom-ctrl-btn" onClick={handleZoomIn} title="Zoom In"><ZoomIn size={20} /></button>
+            <button className="zoom-ctrl-btn" onClick={handleZoomOut} title="Zoom Out"><ZoomOut size={20} /></button>
+            <button className="zoom-ctrl-btn" onClick={handleReset} title="Reset"><RefreshCw size={20} /></button>
+            <div className="zoom-divider" />
+            <button className="zoom-ctrl-btn close-btn" onClick={handleClose} title="Close"><X size={20} /></button>
+          </div>
+          
+          <div className="image-zoom-content" onClick={(e) => e.stopPropagation()}>
+            {renderContent(true)}
+          </div>
+          
+          {caption && <div className="zoomed-caption" onClick={(e) => e.stopPropagation()}>{caption}</div>}
+        </div>
+      )}
+    </>
   );
 };
 
