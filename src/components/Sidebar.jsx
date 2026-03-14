@@ -1,13 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
+import { ScanFace } from 'lucide-react'; 
+
 
 export function Sidebar({ open, sections }) {
   return (
     <nav className={`sidebar-nav ${open ? 'is-open' : ''}`}>
-      <div className="logo">
-        FMI <span>Codes</span>
-      </div>
+      
+     <div className="logo">
+      <ScanFace size={24} strokeWidth={3} />
+      Face<span className="logo-text">Pass</span>
+    </div>
 
       {sections.map((section, idx) => (
         <div key={idx} className="nav-section">

@@ -31,11 +31,11 @@ const App = () => {
       items: [
         // Updated label and URL to FacePass
         { label: 'FacePass Auth', icon: <ScanFace size={18} />, href: '/capabilities/facepass' },
-        { label: 'Real-time Sync', icon: <RefreshCw size={18} />, href: '/capabilities/sync' },
+        // { label: 'Real-time Sync', icon: <RefreshCw size={18} />, href: '/capabilities/sync' },
       ]
     },
     {
-      title: 'Account',
+      title: 'Demo',
       items: [
         { label: 'Login Demo', icon: <User size={18} />, href: '/login' },
       ]
@@ -58,8 +58,7 @@ const App = () => {
               
               {/* Updated Route to FacePass */}
               <Route path="/capabilities/facepass" element={<FacePassAuth />} />
-              <Route path="/capabilities/sync" element={<RealTimeSync />} />
-              
+            
               <Route path="/login" element={<Demo />} />
             </Routes>
           </div>

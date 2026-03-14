@@ -10,22 +10,20 @@ export function Introduction() {
     <div className="page-transition">
       <Title>Introduction</Title>
       <Subtitle>
-        A high-performance codebase architecture for the FMI-Codes ecosystem. 
-        Built for scalability, speed, and developer experience.
+        FacePass is the service that makes user authentication easy and secure for everyone involved - users and developers.
       </Subtitle>
 
-      {/* Example placeholder for your diagram */}
       <DocImage 
-        src="https://placehold.co/800x300/1e1e22/38bdf8?text=System+Architecture+Diagram" 
+        src="/images/ux_flowchart.png"
         alt="System Architecture Placeholder" 
-        caption="Figure 1: High-level overview of the application layers."
+        caption="Figure 1: High-level overview of the UX."
       />
 
       <SectionTitle>Core Modules</SectionTitle>
       <CardGrid>
-        <Card icon={<Cpu size={24} color="#38bdf8" />} title="Backend API" description="Node.js based microservices architecture with high availability." />
-        <Card icon={<Layers size={24} color="#38bdf8" />} title="Frontend Kit" description="Shared UI components built with React and standard CSS." />
-        <Card icon={<Terminal size={24} color="#38bdf8" />} title="Mobile App" description="Cross-platform mobile solution for iOS and Android devices." />
+        <Card icon={<Cpu size={24} color="#38bdf8" />} title="Easy-to-use API" description="Server that authenticates the users with simple and easy to implement calls." />
+        <Card icon={<Layers size={24} color="#38bdf8" />} title="Frontend Kit" description="Shared UI components, built with React and standard CSS, that take 2 minutes to implement." />
+        <Card icon={<Terminal size={24} color="#38bdf8" />} title="Mobile App" description="Mobile solution for users to register to our service and track their logins." />
       </CardGrid>
     </div>
   );

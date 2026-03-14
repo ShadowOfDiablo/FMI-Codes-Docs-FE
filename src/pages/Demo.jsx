@@ -2,6 +2,8 @@ import React from 'react';
 import { Title, Subtitle } from '../components/Typography';
 import './Demo.css';
 
+import { ScanFace } from 'lucide-react';
+
 export function Demo() {
   return (
     <div className="demo-page page-transition">
@@ -24,7 +26,8 @@ export function Demo() {
         
         <div className="pass-face-wrapper">
           <button className="demo-btn standard-btn">
-            Pass-face log-in
+            <ScanFace size={24} strokeWidth={3} />
+            Login with PassFace
           </button>
           
           <div className="doodle-container">
@@ -32,7 +35,7 @@ export function Demo() {
               <path d="M80,20 C110,50 70,90 40,60 C10,30 40,10 60,30 C75,45 60,80 15,75" strokeWidth="5" strokeLinecap="round" />
               <path d="M30,60 L15,75 L25,90" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="doodle-text">Simply click on log in with pass face</span>
+            <span className="doodle-text">Simply click on Login with PassFace</span>
           </div>
         </div>
         
