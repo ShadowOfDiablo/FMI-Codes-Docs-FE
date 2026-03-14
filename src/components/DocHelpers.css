@@ -1,0 +1,29 @@
+.doc-image-figure {
+  margin: 2.5rem 0;
+  width: 100%;
+}
+
+.doc-image-img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #27272a;
+  background-color: #1e1e22;
+}
+
+.doc-image-caption {
+  color: #a1a1aa;
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.capability-wrapper {
+  margin-bottom: 4rem;
+}
+
+.capability-text {
+  color: #a1a1aa;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}

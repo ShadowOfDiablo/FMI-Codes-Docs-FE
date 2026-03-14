@@ -1,0 +1,133 @@
+.demo-page {
+  max-width: 600px;
+}
+
+.demo-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  align-items: flex-start;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  color: #a1a1aa;
+  font-weight: 500;
+}
+
+.input-group input {
+  background: #1e1e22;
+  border: 1px solid #3f3f46;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.input-group input:focus {
+  border-color: #38bdf8;
+}
+
+.input-group input::placeholder {
+  color: #52525b;
+}
+
+.divider {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  color: #71717a;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0.5rem 0;
+}
+
+.pass-face-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.demo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 320px;
+}
+
+.standard-btn {
+  background: #38bdf8;
+  color: #0f0f12;
+  border: none;
+  font-weight: 600;
+}
+
+.standard-btn:hover {
+  background: #0ea5e9;
+  transform: translateY(-2px);
+} */
+
+.google-btn {
+  background: #b6b5b5;
+  color: #3c4043;
+  border: 1px solid #dadce0;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Doodle Styling */
+.doodle-container {
+  position: absolute;
+  top: -45px;
+  left: 120%; 
+  width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #a1a1aa;
+  pointer-events: none; 
+}
+
+.doodle-arrow {
+  width: 90px;
+  height: 90px;
+  transform: rotate(-15deg); 
+}
+
+.doodle-text {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; 
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  transform: rotate(-5deg);
+}
+
+@media (max-width: 768px) {
+  .doodle-container {
+    display: none;
+  }
+}
