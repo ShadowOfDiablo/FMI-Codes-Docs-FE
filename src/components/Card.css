@@ -5,12 +5,25 @@
   margin-top: 3rem;
 }
 
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
+}
+
 .card-container {
   background: #0f0f12;
   border: 1px solid #1e1e22;
   padding: 1.5rem;
   border-radius: 12px;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    padding: 1.25rem;
+  }
 }
 
 .card-container:hover {

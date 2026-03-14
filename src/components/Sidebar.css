@@ -7,16 +7,24 @@
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 
 @media (max-width: 1024px) {
   .sidebar-nav {
-    display: none;
     position: fixed;
-    z-index: 100;
+    left: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
   }
   .sidebar-nav.is-open {
-    display: block;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 320px) {
+  .sidebar-nav {
+    width: 100%;
   }
 }
 

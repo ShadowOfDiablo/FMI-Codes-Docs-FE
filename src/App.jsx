@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { BookOpen, Terminal, User, ScanFace, RefreshCw } from 'lucide-react'; 
 import { GlobalStyle } from './styles/GlobalStyle';
@@ -17,6 +17,11 @@ import { Demo } from './pages/Demo';
 const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation(); 
+
+  // Close menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location]);
 
   const navSections = [
     {
@@ -46,10 +51,20 @@ const App = () => {
     <>
       <GlobalStyle />
       <Layout>
-        <Sidebar open={mobileMenuOpen} sections={navSections} />
+        {mobileMenuOpen && (
+          <div 
+            className="mobile-backdrop" 
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+        <Sidebar open={mobileMenuOpen} sections={navSections} setOpen={setMobileMenuOpen} />
         
         <Main>
-          <Header version="v1.0.0" />
+          <Header 
+            version="v1.0.0" 
+            onMenuToggle={() => setMobileMenuOpen(!mobileMenuOpen)} 
+            menuOpen={mobileMenuOpen}
+          />
           
           <div style={{ minHeight: '80vh' }}>
             <Routes>

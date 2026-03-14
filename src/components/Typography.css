@@ -30,3 +30,28 @@
   font-size: 0.875rem;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .typo-title {
+    font-size: 2rem;
+  }
+  .typo-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .typo-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .typo-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+  }
+  .typo-section-title {
+    font-size: 1.25rem;
+    margin: 3rem 0 1rem;
+  }
+}

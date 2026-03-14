@@ -10,8 +10,32 @@
   margin: 0 auto;
 }
 
+.mobile-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 900;
+}
+
+@media (max-width: 1024px) {
+  .mobile-backdrop {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .main-content {
     padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem 1rem;
   }
 }
