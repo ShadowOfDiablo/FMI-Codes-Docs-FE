@@ -1,0 +1,128 @@
+:root {
+  --flow-bg: #1e1e22;
+  --flow-border: #333;
+  --flow-node-bg: #2a2a2e;
+  --flow-primary: #38bdf8;
+  --flow-secondary: #a78bfa;
+  --flow-text: #ffffff;
+  --flow-label: #94a3b8;
+  --flow-edge: #475569;
+}
+
+.flowchart-container {
+  background: var(--flow-bg);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  border: 1px solid var(--flow-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+.flowchart-svg {
+  width: 100%;
+  height: auto;
+  max-width: 900px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Nodes */
+.flow-node {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flow-node rect {
+  fill: var(--flow-node-bg);
+  stroke: var(--flow-border);
+  stroke-width: 1.5px;
+  rx: 12px;
+  transition: all 0.3s ease;
+}
+
+.flow-node:hover {
+  transform: translateY(-5px);
+}
+
+.flow-node:hover rect {
+  stroke: var(--flow-primary);
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.3));
+}
+
+.flow-node text.label {
+  fill: var(--flow-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.flow-node .icon-container {
+  fill: var(--flow-primary);
+  opacity: 0.9;
+}
+
+/* Edges */
+.flow-edge {
+  stroke: var(--flow-edge);
+  stroke-width: 2px;
+  fill: none;
+  marker-end: url(#arrowhead);
+  transition: all 0.3s ease;
+}
+
+.flow-edge-active {
+  stroke: var(--flow-primary);
+  stroke-width: 2.5px;
+  stroke-dasharray: 6;
+  animation: flow-dash 30s linear infinite;
+}
+
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.flow-edge-label-bg {
+  fill: var(--flow-bg);
+  rx: 4px;
+}
+
+.flow-edge-label-text {
+  fill: var(--flow-label);
+  font-size: 11px;
+  font-weight: 500;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* Markers */
+#arrowhead polygon {
+  fill: var(--flow-edge);
+}
+
+.flow-edge-active + #arrowhead polygon {
+  fill: var(--flow-primary);
+}
+
+.flow-caption {
+  margin-top: 1.5rem;
+  color: var(--flow-label);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Glow effects */
+.glow-primary {
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+.glow-secondary {
+  filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.4));
+}

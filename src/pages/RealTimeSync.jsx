@@ -1,6 +1,7 @@
 import React from 'react';
 import { Title, Subtitle } from '../components/Typography';
-import { CapabilityTemplate, DocImage } from '../components/DocHelpers';
+import { CapabilityTemplate } from '../components/DocHelpers';
+import { WebSocketFlow } from '../components/Flowcharts/Flowchart';
 import './Pages.css';
 
 export function RealTimeSync() {
@@ -9,11 +10,7 @@ export function RealTimeSync() {
       <Title>Real-time Synchronization</Title>
       <Subtitle>Keep your frontend perfectly in sync across all active clients.</Subtitle>
 
-      <DocImage 
-        src="https://placehold.co/800x300/1e1e22/38bdf8?text=WebSocket+Architecture" 
-        alt="WebSocket connection diagram" 
-        caption="Figure 1: Bi-directional event flow between server and clients."
-      />
+      <WebSocketFlow />
 
       <CapabilityTemplate 
         title="Listening for Updates" 

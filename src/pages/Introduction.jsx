@@ -2,7 +2,7 @@ import React from 'react';
 import { Title, Subtitle, SectionTitle } from '../components/Typography';
 import { CardGrid, Card } from '../components/Card';
 import { Cpu, Layers, Terminal } from 'lucide-react';
-import { DocImage } from '../components/DocHelpers';
+import { UXFlowchart } from '../components/Flowcharts/Flowchart';
 import './Pages.css';
 
 export function Introduction() {
@@ -13,11 +13,7 @@ export function Introduction() {
         FacePass is the service that makes user authentication easy and secure for everyone involved - users and developers.
       </Subtitle>
 
-      <DocImage 
-        src="/images/ux_flowchart.png"
-        alt="System Architecture Placeholder" 
-        caption="Figure 1: High-level overview of the UX."
-      />
+      <UXFlowchart />
 
       <SectionTitle>Core Modules</SectionTitle>
       <CardGrid>
