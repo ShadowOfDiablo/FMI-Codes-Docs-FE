@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Title, Subtitle } from '../components/Typography';
 import './Demo.css';
 
-import { ScanFace } from 'lucide-react';
+import LoginWithFacePass from '../components/LoginWithFacePass';
+import SuccessAlert from '../components/SuccessAlert';
 
 export function Demo() {
+  const [jwt, setJwt] = useState("");
+  const [status, setStatus] = useState("");
   return (
+    <>
+    {status === "approved" &&
+
+      <SuccessAlert>
+        {jwt}
+      </SuccessAlert>
+    }
     <div className="demo-page page-transition">
       <Title>Welcome back</Title>
       <Subtitle>Log in to access your dashboard.</Subtitle>
@@ -25,17 +35,14 @@ export function Demo() {
         <div className="divider">or</div>
         
         <div className="pass-face-wrapper">
-          <button className="demo-btn standard-btn">
-            <ScanFace size={24} strokeWidth={3} />
-            Login with PassFace
-          </button>
+          <LoginWithFacePass setJwt={setJwt} setStatus={setStatus}/>
           
           <div className="doodle-container">
             <svg className="doodle-arrow" viewBox="0 0 100 100" fill="none" stroke="currentColor">
               <path d="M80,20 C110,50 70,90 40,60 C10,30 40,10 60,30 C75,45 60,80 15,75" strokeWidth="5" strokeLinecap="round" />
               <path d="M30,60 L15,75 L25,90" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="doodle-text">Simply click on Login with PassFace</span>
+            <span className="doodle-text">Simply click on Login with FacePass</span>
           </div>
         </div>
         
@@ -51,5 +58,6 @@ export function Demo() {
 
       </div>
     </div>
+    </>
   );
 }

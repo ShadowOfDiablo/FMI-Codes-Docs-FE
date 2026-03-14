@@ -103,9 +103,9 @@ export const RegistrationFlow = () => {
   ];
 
   const edges = [
-    { d: 'M 170 190 L 250 190', label: 'Download & Open', labelPos: { x: 210, y: 180 }, active: true },
-    { d: 'M 370 190 L 450 190', label: 'Register (Biometric)', labelPos: { x: 410, y: 180 }, active: true },
-    { d: 'M 570 190 L 650 190', label: 'Save Identity', labelPos: { x: 610, y: 180 }, active: true },
+    { d: 'M 170 190 L 250 190', label: 'Download & Open', labelPos: { x: 210, y: 110 }, active: true },
+    { d: 'M 370 190 L 450 190', label: 'Register, Create Private/Public KeyPair', labelPos: { x: 410, y: 110 }, active: true },
+    { d: 'M 570 190 L 650 190', label: 'Save Identity and Public Key', labelPos: { x: 610, y: 110 }, active: true },
   ];
 
   return <Flowchart nodes={nodes} edges={edges} caption="Figure 1: Registration Workflow" />;
@@ -119,8 +119,8 @@ export const ChallengeCreationFlow = () => {
   ];
 
   const edges = [
-    { d: 'M 170 190 L 340 190', label: 'Request Challenge', labelPos: { x: 255, y: 180 }, active: true },
-    { d: 'M 460 190 L 630 190', label: 'Push Notification', labelPos: { x: 545, y: 180 }, active: true },
+    { d: 'M 170 190 L 340 190', label: 'Request Challenge', labelPos: { x: 255, y: 110 }, active: true },
+    { d: 'M 460 190 L 630 190', label: 'Create Challenge & Push Notification', labelPos: { x: 545, y: 110 }, active: true },
   ];
 
   return <Flowchart nodes={nodes} edges={edges} caption="Figure 2: Challenge Creation" />;
@@ -134,8 +134,8 @@ export const ChallengeApprovalFlow = () => {
   ];
 
   const edges = [
-    { d: 'M 170 190 L 340 190', label: 'Sign & Verify', labelPos: { x: 255, y: 180 }, active: true },
-    { d: 'M 460 190 L 630 190', label: 'Update Status', labelPos: { x: 545, y: 180 }, active: true },
+    { d: 'M 170 190 L 340 190', label: 'Sign', labelPos: { x: 255, y: 110 }, active: true },
+    { d: 'M 460 190 L 630 190', label: 'Verify & Update Status', labelPos: { x: 545, y: 110 }, active: true },
   ];
 
   return <Flowchart nodes={nodes} edges={edges} caption="Figure 3: Challenge Approval" />;
@@ -149,8 +149,8 @@ export const UserLoginFlow = () => {
   ];
 
   const edges = [
-    { d: 'M 170 190 L 340 190', label: 'Polling / Wait', labelPos: { x: 255, y: 180 }, active: true },
-    { d: 'M 460 190 L 630 190', label: 'JWT Token', labelPos: { x: 545, y: 180 }, active: true },
+    { d: 'M 170 190 L 340 190', label: 'Polling / Wait', labelPos: { x: 255, y: 110 }, active: true },
+    { d: 'M 460 190 L 630 190', label: 'JWT Token', labelPos: { x: 545, y: 110 }, active: true },
   ];
 
   return <Flowchart nodes={nodes} edges={edges} caption="Figure 4: User Login Completion" />;
@@ -159,16 +159,16 @@ export const UserLoginFlow = () => {
 export const UXFlowchart = () => {
   const nodes = [
     { x: 40, y: 60, label: 'User', icon: <User size={20} />, color: '#38bdf8', width: 100, height: 70 },
-    { x: 250, y: 60, label: 'Website', icon: <Globe size={20} />, color: '#38bdf8', width: 100, height: 70 },
-    { x: 250, y: 260, label: 'Backend', icon: <Server size={20} />, color: '#fb7185', width: 100, height: 70 },
-    { x: 460, y: 260, label: 'Mobile App', icon: <Smartphone size={20} />, color: '#a78bfa', width: 100, height: 70 },
+    { x: 250, y: 60, label: 'Website', icon: <Globe size={20} />, color: '#34d399', width: 100, height: 70 },
+    { x: 250, y: 260, label: 'Backend', icon: <Server size={20} />, color: '#38bdf8', width: 100, height: 70 },
+    { x: 460, y: 260, label: 'Mobile App', icon: <Smartphone size={20} />, color: '#38bdf8', width: 100, height: 70 },
   ];
 
   const edges = [
-    { d: 'M 140 95 L 250 95', label: '1. Access', labelPos: { x: 195, y: 85 } },
-    { d: 'M 300 130 L 300 260', label: '2. Login Req', labelPos: { x: 340, y: 195 } },
-    { d: 'M 350 295 L 460 295', label: '3. Challenge', labelPos: { x: 405, y: 285 } },
-    { d: 'M 510 260 L 350 95', label: '4. Biometric Sign', labelPos: { x: 450, y: 160 } },
+    { d: 'M 140 95 L 250 95', label: '1. Access', labelPos: { x: 195, y: 85 }, active: true  },
+    { d: 'M 300 130 L 300 260', label: '2. Login Req', labelPos: { x: 340, y: 195 }, active: true  },
+    { d: 'M 350 295 L 460 295', label: '3. Challenge', labelPos: { x: 405, y: 285 }, active: true  },
+    { d: 'M 510 260 L 350 95', label: '4. Biometric Sign', labelPos: { x: 450, y: 160 }, active: true  },
     { d: 'M 300 260 L 300 130', label: '5. Success', labelPos: { x: 260, y: 195 }, active: true },
   ];
 
