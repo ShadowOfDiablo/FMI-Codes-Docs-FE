@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BookOpen, Terminal, Cpu, Layers, Code2 } from 'lucide-react';
-import { GlobalStyle } from './styles/GlobalStyle';
+
+import './styles/global.css';
+
 import { Layout, Main } from './components/Layout';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
@@ -31,7 +33,6 @@ const App = () => {
 
   return (
     <>
-      <GlobalStyle />
       <Layout>
         <Sidebar open={mobileMenuOpen} sections={navSections} />
         <Main>
@@ -62,7 +63,7 @@ const App = () => {
             <Card 
               icon={<Layers size={24} color="#38bdf8" />}
               title="Frontend Kit"
-              description="Shared UI components built with React and styled-components for consistent design across apps."
+              description="Shared UI components built with React and standard CSS for consistent design across apps."
             />
             <Card 
               icon={<Terminal size={24} color="#38bdf8" />}
@@ -72,7 +73,7 @@ const App = () => {
           </CardGrid>
 
           <Footer>
-            © 2026 FMI-Codes. Built with React and Styled Components.
+            © 2026 FMI-Codes. Built with React and standard CSS.
           </Footer>
         </Main>
       </Layout>

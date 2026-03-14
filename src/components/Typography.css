@@ -1,0 +1,32 @@
+.typo-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+}
+
+.typo-subtitle {
+  font-size: 1.125rem;
+  color: #a1a1aa;
+  max-width: 600px;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+.typo-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 4rem 0 1.5rem;
+  letter-spacing: -0.025em;
+}
+
+.typo-footer {
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #1e1e22;
+  color: #71717a;
+  font-size: 0.875rem;
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.version-badge {
+  background: #1e1e22;
+  color: #a1a1aa;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-family: monospace;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.search-button:hover {
+  color: #fff;
+}

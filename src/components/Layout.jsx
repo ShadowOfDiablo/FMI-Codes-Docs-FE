@@ -1,17 +1,10 @@
-import styled from 'styled-components';
+import React from 'react';
+import './Layout.css';
 
-export const Layout = styled.div`
-  display: flex;
-  min-height: 100vh;
-`;
+export function Layout({ children }) {
+  return <div className="layout">{children}</div>;
+}
 
-export const Main = styled.main`
-  flex: 1;
-  padding: 3rem 4rem;
-  max-width: 1000px;
-  margin: 0 auto;
-
-  @media (max-width: 768px) {
-    padding: 2rem 1.5rem;
-  }
-`;
+export function Main({ children }) {
+  return <main className="main-content">{children}</main>;
+}
