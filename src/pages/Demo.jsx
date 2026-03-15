@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Title, Subtitle } from '../components/Typography';
 import './Demo.css';
 
-import LoginWithFacePass from 'login-with-facepass';
-// import LoginWithFacePass from '../components/LoginWithFacePass';
+// import LoginWithFacePass from 'login-with-facepass';
 import SuccessAlert from '../components/SuccessAlert';
 
 export function Demo() {
@@ -36,7 +35,7 @@ export function Demo() {
         <div className="divider">or</div>
         
         <div className="pass-face-wrapper">
-          <LoginWithFacePass setJwt={setJwt} setStatus={setStatus}/>
+          {/* <LoginWithFacePass setJwt={setJwt} setStatus={setStatus}/> */}
           
           <div className="doodle-container">
             <svg className="doodle-arrow" viewBox="0 0 100 100" fill="none" stroke="currentColor">
