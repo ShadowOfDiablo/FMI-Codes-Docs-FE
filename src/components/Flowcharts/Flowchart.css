@@ -104,6 +104,8 @@
 .flow-node:hover rect {
   stroke-opacity: 1;
   filter: drop-shadow(0 0 12px var(--node-color));
+  fill: var(--flow-node-bg);
+  stroke: var(--node-color);
 }
 
 .flow-node text.label {
