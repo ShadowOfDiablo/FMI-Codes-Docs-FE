@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   User, 
   Smartphone, 
@@ -30,6 +30,18 @@ const Flowchart = ({ nodes, edges, caption, viewBox = "0 0 800 400" }) => {
     setScale(1);
     setPosition({ x: 0, y: 0 });
   };
+
+  // Prevent body scroll when zoomed
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isZoomed]);
 
   const handleZoomIn = (e) => {
     if (e) e.stopPropagation();

@@ -19,6 +19,18 @@ export function DocImage({ src, alt, caption }) {
     setPosition({ x: 0, y: 0 });
   };
 
+  // Prevent body scroll when zoomed
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isZoomed]);
+
   const handleZoomIn = (e) => {
     if (e) e.stopPropagation();
     setScale(prev => Math.min(prev + 0.3, 5));
