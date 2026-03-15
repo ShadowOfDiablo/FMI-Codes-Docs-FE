@@ -1,34 +1,35 @@
 // import React, { useState } from 'react';
 // import { ScanFace } from 'lucide-react';
 
-// const be_endpoint = ""
+// const be_endpoint = "https://facepass-be-ecd6bfesh4f0b5hs.belgiumcentral-01.azurewebsites.net";
 
 // const createChallenge = async ({ email }) => {
-//   const response = await fetch(be_endpoint + "/Public/login", {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({
-//       "email": email
-//     })
-//   });
+//   const params = new URLSearchParams({ Email: email });
 
-//   const data = await response.json();
+//   const response = await fetch(
+//     `${be_endpoint}/Public/login?${params.toString()}`,
+//     {
+//       method: "GET",
+//     }
+//   );
+
+//   const text = await response.text();
+//   let data 
+//   try {
+//     data = text? JSON.parse(text) : {};
+//   } catch (error) {
+//     data = {"message":text}
+//   }
 //   return data;
 // };
 
 // const challengeApproval = async ({challengeId}) => {
-//     //prompt every 500 ms
-//     const response = await fetch(be_endpoint + "/Public/checkChallengeStatus", {
+//     const params = new URLSearchParams({ id: challengeId });
+//     const response = await fetch(be_endpoint + `/Public/checkChallengeStatus?${params}`, {
 //         method: "GET",
 //         headers: {
 //         "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({
-//             "challengeId": challengeId
-//         })
-
+//         }
 //     })
 
 //     const data = await response.json();
@@ -41,13 +42,44 @@
 //   const [showPopup, setShowPopup] = useState(false);
 //   const [email, setEmail] = useState("");
 
-//   const handleSubmit = () => {
+//   const handleSubmit = async () => {
 //     setShowPopup(false);
 
-//     console.log("Email:", email);
+//     const data = await createChallenge({email});
 
-//     setJwt("jwt: dsfaiohsd");
-//     setStatus("approved");
+//     console.log("HELLO")
+//     console.log(data)
+//     const challengeId = data.challengeId;
+
+//     const MAX_TIME = 300000; // 5 minutes
+
+//     const pollChallenge = async (challengeId, startTime = Date.now()) => {
+//       const result = await challengeApproval({ challengeId });
+
+//       console.log(result);
+
+//       // stop if approved
+//       if (result.status === "approved") {
+//         setJwt(result.jwt);
+//         setStatus(result.status);
+//         return result;
+//       }
+
+//       if (result.status === "rejected"){
+//         return null;
+//       }
+
+//       // stop if timeout reached
+//       if (Date.now() - startTime > MAX_TIME) {
+//         console.log("Polling timeout");
+//         return null;
+//       }
+
+//       // poll again after 500 ms
+//       setTimeout(() => pollChallenge(challengeId, startTime), 500);
+//     };
+    
+//     pollChallenge(challengeId);
 //   };
 
 //   const styles = {

@@ -16,7 +16,7 @@ export function QuickStart() {
       >
         
         <span className="comment"># Install dependencies</span><br />
-        npm install axios
+        npm install login-with-facepass
       </CapabilityTemplate>
 
       <CapabilityTemplate 
@@ -27,6 +27,9 @@ export function QuickStart() {
         
         <span className="comment"># FacePass React Component</span><br />
         
+        import LoginWithFacePass from 'login-with-facepass';
+
+        {"\n\n<LoginWithFacePass setJwt={setJwt} setStatus={setStatus}/>"}
       </CapabilityTemplate>
 
     </div>

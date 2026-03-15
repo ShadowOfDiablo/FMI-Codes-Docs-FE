@@ -6,7 +6,7 @@ const SuccessAlert = ({ children }) => {
   return (
     <div className="alert-success">
       <CheckCircle size={20} className="alert-icon" />
-      <span>{children}</span>
+      <span className="alert-text">{children}</span>
     </div>
   );
 };

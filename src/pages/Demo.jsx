@@ -3,6 +3,7 @@ import { Title, Subtitle } from '../components/Typography';
 import './Demo.css';
 
 import LoginWithFacePass from 'login-with-facepass';
+// import LoginWithFacePass from '../components/LoginWithFacePass';
 import SuccessAlert from '../components/SuccessAlert';
 
 export function Demo() {
