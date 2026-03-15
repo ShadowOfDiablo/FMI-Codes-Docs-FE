@@ -92,6 +92,11 @@
   transition: all 0.3s ease;
 }
 
+.flow-node svg rect{
+  stroke: #fff;
+  filter: none !important;
+}
+
 .flow-node:hover {
   transform: translateY(-5px);
 }
