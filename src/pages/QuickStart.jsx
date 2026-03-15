@@ -24,12 +24,15 @@ export function QuickStart() {
         explanation="Copy and paste this React Component into your project, and after that you can use it in the Authentication forms."
         codeTitle="React.js"
       >
-        
-        <span className="comment"># FacePass React Component</span><br />
-        
-        import LoginWithFacePass from 'login-with-facepass';
-
-        {"\n\n<LoginWithFacePass setJwt={setJwt} setStatus={setStatus}/>"}
+        <span className="keyword">import</span> {'{ FacePassAuth }'} <span className="keyword">from</span> <span className="string">'@fmi-codes/react-sdk'</span>;<br /><br />
+        <span className="keyword">const</span> <span className="function">Login</span> = () =&gt; {'{'}<br />
+        &nbsp;&nbsp;<span className="keyword">return</span> (<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="function">FacePassAuth</span><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apiKey=<span className="string">"your-api-key"</span><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onSuccess={'{'}(token) =&gt; console.<span className="function">log</span>(token){'}'}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
+        &nbsp;&nbsp;);<br />
+        {'}'};
       </CapabilityTemplate>
 
     </div>
